@@ -40,9 +40,9 @@ test.addEventListener("click", () => {
 });
 
 //to do: 
-// have an image upload feature
-// use php or node to upload image
-// use built in method to convert the image to 16x16
-// find the most popular colour in that square
-// push that colour as square for (x,y) array
-// colour the array images
+// have an image upload feature #5
+// use php or node to upload image #6
+// use built in method to convert the image to 16x16 #1
+// find the most popular colour in that square #2
+// push that colour as square for (x,y) array #3
+// colour the array images #4
