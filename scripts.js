@@ -38,3 +38,11 @@ test.addEventListener("click", () => {
     arr = buildRGB(imageD.data);
     console.log(arr);
 });
+
+//to do: 
+// have an image upload feature
+// use php or node to upload image
+// use built in method to convert the image to 16x16
+// find the most popular colour in that square
+// push that colour as square for (x,y) array
+// colour the array images
