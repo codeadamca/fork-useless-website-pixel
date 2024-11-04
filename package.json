@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "nodemon server.mjs"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.7",
+    "sharp": "^0.33.5"
+  },
+  "optionalDependencies": {
+    "@img/sharp-win32-x64": "^0.33.5"
+  }
+}
