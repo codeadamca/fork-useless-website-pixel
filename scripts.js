@@ -30,6 +30,29 @@ function buildRGB(imageData) {
     return rgbValues;
 }
 
+function commonCol(imgdata) {
+    // make an array to house the different color codes
+    let map = new Map();
+    // set a counter so every 16 pixels you push the most common element to an array and reset
+    let count = 0;
+    for (let i = 0; i < imgdata.length; i ++) {
+        if (count < 17) {
+            let red = imgdata[i].r;
+            let green = imgdata[i].g;
+            let blue = imgdata[i].b;
+            let col = `${red},${green},${blue}`;
+            if (!map.has(col)) {
+                map.set(col,1);
+            } else {
+                map.set(col, map.get(col)+1);
+            }
+            console.log(map);
+        }
+    }
+        
+    // console.log(map);
+}
+
 test.addEventListener("click", () => {
     //get the image data
     let imageD = main();
@@ -37,12 +60,13 @@ test.addEventListener("click", () => {
     // get an array with all the rgb values of the image
     arr = buildRGB(imageD.data);
     console.log(arr);
+    commonCol(arr);
 });
 
 //to do: 
 // have an image upload feature #5
 // use php or node to upload image #6
-// use built in method to convert the image to 16x16 #1
+// use built in method to convert the image to 16x16 #1 scratch
 // find the most popular colour in that square #2
 // push that colour as square for (x,y) array #3
 // colour the array images #4
