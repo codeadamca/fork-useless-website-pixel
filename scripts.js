@@ -1,6 +1,7 @@
 const test = document.getElementById("test");
 const img1 = document.getElementById("img_split");
 let arr = [];
+let commonKeys = [];
 // every pixel image is a collection of pixels; as in a 320x320 image has 1 color per pixel for 320x320 items
 // make a fxn that gets the color of each pixel
 function main() {
@@ -24,6 +25,7 @@ function buildRGB(imageData) {
             r: imageData[i],
             g: imageData[i + 1],
             b: imageData[i + 2],
+            a: imageData[i + 3]
         };
         rgbValues.push(rgb);
     }
@@ -31,42 +33,62 @@ function buildRGB(imageData) {
 }
 
 function commonCol(imgdata) {
-    // make an array to house the different color codes
+    // make a map to house the different color codes
     let map = new Map();
+    // array to push the most common colour to
+    let temp = [];
+    // array to house each most common colour in order
+    let keys = [];
     // set a counter so every 16 pixels you push the most common element to an array and reset
     let count = 0;
-    for (let i = 0; i < imgdata.length; i ++) {
-        if (count < 17) {
-            let red = imgdata[i].r;
-            let green = imgdata[i].g;
-            let blue = imgdata[i].b;
-            let col = `${red},${green},${blue}`;
+    for (let i = 0; i < imgdata.length; i++) {
+        //build the colour object for keys
+        let red = imgdata[i].r;
+        let green = imgdata[i].g;
+        let blue = imgdata[i].b;
+        let alpha = imgdata[i].a;
+        let col = `${red},${green},${blue},${alpha}`;
+        if(count < 15) {
             if (!map.has(col)) {
                 map.set(col,1);
+                count++;
             } else {
                 map.set(col, map.get(col)+1);
+                count++;
             }
-            console.log(map);
+        } else if (count === 15) {
+            map.set(col, map.get(col)+1);
+            //push the most common key/value pair to array
+            temp.push([...map.entries()].reduce((a, e ) => e[1] > a[1] ? e : a));
+            // reset
+            map.clear();
+            count = 0;
         }
     }
-        
-    // console.log(map);
+    //push the keys to an array
+    temp.forEach(pair => {
+        keys.push(pair[0]);
+    });
+    return keys;
 }
 
 test.addEventListener("click", () => {
     //get the image data
     let imageD = main();
-    console.log(imageD);
+    // console.log(imageD);
     // get an array with all the rgb values of the image
     arr = buildRGB(imageD.data);
-    console.log(arr);
-    commonCol(arr);
+    // console.log(arr);
+    //get an array with the most common colour for each 16 pixels
+    commonKeys = commonCol(arr);
+    // console.log(commonKeys);
+    
 });
 
 //to do: 
 // have an image upload feature #5
 // use php or node to upload image #6
 // use built in method to convert the image to 16x16 #1 scratch
-// find the most popular colour in that square #2
-// push that colour as square for (x,y) array #3
-// colour the array images #4
+// find the most popular colour in that square #2 done
+// push that colour as square for (x,y) array #3 done
+// colour the array images #4 
