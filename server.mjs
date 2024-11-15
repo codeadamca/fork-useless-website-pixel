@@ -6,6 +6,6 @@ export default function convertImage(img) {
     .toFile("images/newImg.png");
 };
 
-sharp("./images/14551232231_118ce0759e.jpg")
+sharp("./images/ameenfahmy-gcWd0ts4RCo-unsplash.jpg")
 .resize(256,256)
-.toFile("images/newImg1.png")
+.toFile("images/newImg2.png")
