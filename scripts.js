@@ -59,7 +59,7 @@ function commonCol(imgdata) {
         } else if (count === 15) {
             map.set(col, map.get(col)+1);
             //push the most common key/value pair to array
-            temp.push([...map.entries()].reduce((a, e ) => e[1] > a[1] ? e : a));
+            temp.push([...map.entries()].reduce((a, e) => e[1] > a[1] ? e : a));
             // reset
             map.clear();
             count = 0;
