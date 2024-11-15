@@ -78,7 +78,7 @@ function paintCanvas(){
     canva.width = 64;
     canva.height = 64;
     let imageData = context.createImageData(canva.width, canva.height);
-    console.log(imageData);
+    // console.log(imageData);
     let data = imageData.data;
     let split = [];
     commonKeys.forEach(entry => {
@@ -94,8 +94,8 @@ function paintCanvas(){
         data[i+3] = split[count][3];
         count++;
     }
-
-    // console.log(imageData);
+    // console.log(count);
+    console.log(imageData);
 
     context.putImageData(imageData, 0, 0);
 }   
@@ -103,10 +103,10 @@ function paintCanvas(){
 test.addEventListener("click", () => {
     //get the image data
     let imageD = main();
-    console.log(imageD);
+    // console.log(imageD);
     // get an array with all the rgba values of the image
     arr = buildRGB(imageD.data);
-    console.log(arr);
+    // console.log(arr);
     //get an array with the most common colour for each 16 pixels
     commonKeys = commonCol(arr);
     console.log(commonKeys); //array of 64x64
